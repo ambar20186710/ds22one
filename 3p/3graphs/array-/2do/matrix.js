@@ -1,4 +1,4 @@
-  let tree =  [
+   let tree =  [
       [0, 1, 0, 0],//1 
       [1, 0, 1, 1],//2 
       [0, 1, 0, 0],//3 
@@ -10,61 +10,71 @@
       this.matriz=matriz;
     }
     
-    isSquare(){
-      for(let i=0; i < this.matriz.length; i++){
+    isSquare(matriz){
+      for(let i=0; i < matriz.length; i++){
         let evaluar; 
-        evaluar = this.matriz[i].length;
+        evaluar = matriz[i].length;
         
-        if(evaluar != this.matriz.length){
-          return console.log("No es cuadrada");
+        if(evaluar != matriz.length){
+          return console.log(false);
         }
       }
-       return console.log("Es cuadrada");
+       return console.log(true);
     }
     
-    isSymmetrical(){
-      for(let i=0; i < this.matriz.length; i++){
-        for(let j=0; j < this.matriz[i].length; j++){
-         if(this.matriz[i][j] != this.matriz[j][i]){
-           return console.log("No es simetrica");
+    isSymmetrical(matriz){
+      for(let i=0; i < matriz.length; i++){
+        for(let j=0; j < matriz[i].length; j++){
+         if(matriz[i][j] != matriz[j][i]){
+           return console.log(false);
          }
        } 
    	 }
-      return console.log("Es simetrica");
+      return console.log(true);
     }
     
-    isTree(){
+    isTree(matriz){
       let sum=0;
       let contador=0;
       let columnas=0;
       
-       for(let i=0; i < this.matriz.length; i++){
-        for(let j=0; j < this.matriz[i].length; j++){
+       for(let i=0; i < matriz.length; i++){
+        for(let j=0; j < matriz[i].length; j++){
           contador++;
-          columnas = contador / this.matriz.length ;
+          columnas = contador / matriz.length ;
         }
        }
           
-      for(let i=1;i<this.matriz.length;i++){
+      for(let i=1;i<matriz.length;i++){
+        sum=0;
       	for(let j=0;j<columnas;j++){
         	if(j<i){
-            
-       			
+            sum+=matriz[i][j];
+           if(sum > 1){
+             return console.log(false);
+           }
            }
        	}
-     	}
-                
+      }
+      	return console.log(true);     
     }
     
-    isGraph(){
-    
+    isGraph(matriz){
+    	if(matriz.isTree(matriz) == false){
+        return console.log(true);
+      }
+      else{
+        return console.log(false);    
+      }
+        
     }
     
   }
   
   let matriz = new Matriz(tree);
   
-  matriz.isSquare();
-  matriz.isSymmetrical();
-  //matriz.isTree();
+  matriz.isSquare(matriz);
+  matriz.isSymmetrical(matriz);
+  matriz.isTree(matriz);
+  matriz.isGraph(matriz);
   
